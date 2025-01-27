@@ -1,6 +1,8 @@
 we will discuss debug
 
 ----------------------------------------------------------------
+https://devopsjune2022-my.sharepoint.com/:v:/g/personal/adikarthik_devopsjune2022_onmicrosoft_com/EWURJpL6amZCtTvAFt3KancB-HEQnVKfYgtaW8IA3qLSAg?e=Lk87aG
+....................................................................................................
 
 what is debug : to check the code which is in proper or not , it will show the error.
 
