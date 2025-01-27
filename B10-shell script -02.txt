@@ -14,6 +14,8 @@ two task:
 3. $!
 
 -------------
+https://devopsjune2022-my.sharepoint.com/:v:/g/personal/adikarthik_devopsjune2022_onmicrosoft_com/EVEtohtqsY1Hp1464eqKkvABX4rID6vI-czMkAcKDRrPvg?e=aAjHlg
+..............................................................................................................
 1. $0 - it will return the filename of the shell script
 2. $# - it reprsent the total number if parmeters which are passed as a parameter
 3. $@ - it represent the position of the paramater passed to the script as seperate words
