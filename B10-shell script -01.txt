@@ -1,0 +1,224 @@
+1. Run any commands in the shell script
+ ls -lrt
+ free -m
+ touch test.txt
+ mkdir d1
+ 
+ ---------------------------------------------------------------------------
+ 2. use read command twice to create the file and to create the dir
+ 
+ read filename
+ read dirname 
+ 
+ .... $filename
+ .....$dirname
+ 
+-----------------------------------------------------------------------
+shell script:
+ - used to automate the code or commands
+ - to run multiple commands or any scenearios we need to do automation
+ 
+ example:
+ 1. want to create 100 files in one strectch - shell script will take place
+ 
+ realtime 1 :
+ 
+ 1.              total        used        free      shared  buff/cache   available
+Mem:        1974044     1041184      286784        1876      646076      766140
+Swap:       2097148      249272     1847876
+
+what is the % of available memory?
+
+total = 1970
+used = 1041
+
+%= used / total * 100 = 104/197 * 100 = 52 -> exceed 80 , it should make  alert 
+
+realtime: 2
+
+everyday in your VM , you will have log files 
+
+autobackup , everyday at particular time log should backup and delete the orginal file -> it consume lot of memory so we need do this
+
+tar -zcvf log file.tar.gz logbackup/*
+rm -r logfile
+
+realtime: 3
+
+Manipulation of data
+Run the script based on the requirement.
+
+shell script: A shell script is a computer/shell program mainly designed to run in the linux/unix/centos os
+
+2 types of shells:
+
+1. Bourne shell (The Terminal start with $)
+/bin/bash
+
+echo $SHELL
+
+2. C shell (The Terminal start with %)
+
+--------------------------------------------------------------------------------------------------------------------
+NOTE:
+A shell script is an command line interpreter and is used to perform manipulation , execution , deletion and displaying the results.
+A shell script is small junk of code to execute based on the requirement.
+A shell script is mainly used in AUTOMATION.
+
+---------------------------------------------------------------------------------------
+Basic structure of shell script:
+
+#!/bin/bash - hashbang/shebang line
+
+This is the first line of the shell script which is used to represnt that file is going to use the bourne shell /bin/bash shell to execute the script
+# -> comments 
+#Author - Visuwesh
+Second line about the author
+#Date - 27/12/2024
+#Desc - shell script to get the avilable memory
+
+----------------------------------------------------------------------------------
+How to create a shell script:
+
+create file 
+save the file with the extension .sh
+
+example:
+
+vi <file_name>.sh
+
+sample.sh
+
+
+-----------------------------------------------------------------------------------------
+How to execute the shell script:
+syntax:
+
+sh <file_name>.sh
+
+example:
+
+sh testscript.sh
+
+or
+
+./<file_name>.sh
+
+example:
+
+./testscript.sh
+
+
+------------------------------------------------------------
+#!/bin/bash
+#Author - Visu
+#Date - 27-12-2024
+#Desc - shell script example
+
+ls -lrt | wc -l
+
+
+--------------------------------------------------------------------
+read command: Read command is going to read the line from the CLI (command line interface)/terminal , whenever we are going to execute shell script .
+
+getting the inputs from end user via CLI/terminal.
+
+how the syntax:
+
+read <variable_name>
+
+example:
+read filename
+read a 
+read b
+
+------------------------------------------
+echo:
+it will display the content in output
+
+---------------------------------------------------------------------------------------
+For example:
+ read the filename from enduser and then create the file based on the given filename and give the permission to the file 
+ 
+ 1. read the filename
+ 2. file should create with given filename
+ 3. file should have particular permission
+ 
+#!/bin/bash
+#Author - visu
+#Date - 27/12/2024
+#Desc - read demo
+
+echo "please enter the filename , you need to create"
+read filename
+
+echo "the filename you eneterd is $filename"
+
+touch $filename
+
+chmod 777 $filename
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

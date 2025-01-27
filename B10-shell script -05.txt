@@ -1,0 +1,209 @@
+1 . WAP for multiplication and division using function
+2. WAP to perfom the free , du , df uname , ps , top , ping , netstat and call any 4  using function
+
+
+--------------------------------------
+cron job 
+
+1. create a empty file via cron job 
+
+
+example:
+
+step 1 : create shell script to create file 
+touch path/text1.txt -> cron.sh 
+step 2 : crontab -e 
+step3 : set the cron job
+* * * * * <shell> </bin/bash> <path of shell script>
+
+example: 
+
+I want to create a file at every 5 Min 
+
+5 * * * * /bin/bash /home/visuwesh/shellscript/cron.sh
+
+refersh the bash - source ~/.bashrc
+
+check the status
+
+start the cron if it is inactive
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+Today we will discuss on two concepts
+
+1. functions 
+2. cronjob
+
+---------------------------------------------------
+
+1. functions :
+
+The functions are kind of methods or small junk of code , which is more readble and is used in differnt part of program.
+
+Advantage of using function:
+
+1 . reduce the code
+2.  reduce the clutter in a shell script and provide clear workflow.
+
+----------------------------------------------------------------------------
+
+synatax:
+
+#function defination or create a function
+
+functionName () {
+
+   //block of code
+
+}
+
+---------------------------------------------------------
+
+How to invoke the function:
+
+<name of the function> 
+
+-----------------------------------------------------------
+
+sample program:
+
+#!/bin/bash
+
+echo "enter the num1"
+read num1 
+
+echo "enter the num2"
+read num2
+
+addtion () {
+  sum=$(( $num1 + $num2 ))
+  echo "difference of two num is $sum
+}
+
+difference () {
+  sum=$(( $num1 - $num2 ))
+  echo "difference of two num is $sum
+
+}
+
+
+addition
+difference
+
+-----------------------------------------------------------------------------
+
+output 
+enter the 1st number
+39
+enter the 2nd number
+40
+
+---------------------------------------------------------------------------------------------------
+
+CronJob:
+
+everyday/ particular time we need to execute some code or some program - for this purpose we can use cron job.
+kind of automation
+
+example:
+I need to backup log files at 8 clock in eve (either everday / month /week/any specific time)
+I need to archive the log files first day of every month.
+
+--------------------------------------------
+
+example:
+at night 10.30
+at night 12.30 only on wednesday
+at night 2 on the 1st day of the month
+at eve 6 only on sat
+
+----------------------------------------
+cronjob:
+cronjob is used to execute the shell script on the specified time.
+
+
+crontab - l - to list the cron job
+crontab -e  - to edit or add or modify 
+
+How to create/set the cronjob
+
+* * * * * 
+
+1 st * -> It represent the min [0-59]
+
+example:
+
+5 * * * * -> It will execute every 5 min
+
+30 * * * * -> It will execute every 30 min
+
+----------------------------------------------------------------------------------------
+
+2nd * -> It reprsent the Hour [ 0 -23 ]
+
+* 11 * * * -> It will execute 11 o clk
+3 22 * * * - It will execute in 10.03 PM
+
+
+-----------------------------------------------------------------------------------
+3rd * -> Day of the Month [ 1 -31 ]
+
+* * 23 * * -> every 23rd day of the month it will execute
+
+30 19 15 * * ->  every month 15th night 7.30 PM it will execute
+
+-------------------------------------------------------------------------------------
+4th * -> Month of the year [ 1 - 12]
+
+45 * * 12 * -> only on dec every 45 min once it will execute
+
+30 05 10 12 * -> only on dec 10 on morning 5.30 AM
+
+---------------------------------------------------------------------------------
+5th * -> Day of the week [ 0 - sun . 1 -mon , 2 -tues ...6- sat ]
+
+* 06 * 12 06 -> In month of dec , every sat 06 AM - it will execute
+30 * * * 5 -> execute every 30 min only on Friday
+
+------------------------------------------------------------------------------
+
+https: //crontab.guru
+
+sudo service cron start
+sudo service cron status - inactive the make active
+
+How to set:
+
+crontab -e 
+
+
+* * * * * </bin/bash> <path of script>
+
+once you set cronjob 
+
+source ~/.bashrc - refersh the bash shell
+
+----------------------------------------------------------
+
+* * * * * echo "$(data) - cron is running " >> /home/visuweshkrish/shellscript/cron_task.log
+
+to stop or to exit 
+
+simply we need comment 
+#<cronjob>
+
+Note: for cron job system/VM should be up and running.
+
+-------------------------------------------------------------------------------------------
+
+
+
+
+
+

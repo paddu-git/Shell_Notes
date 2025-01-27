@@ -1,0 +1,219 @@
+we will discuss debug
+
+----------------------------------------------------------------
+
+what is debug : to check the code which is in proper or not , it will show the error.
+
+How to debug :
+
+example 1: 
+
+command to debug 
+
+    bash -x <filename.sh>
+
+example 2: Suppose I need to enforce or add in script itself.
+
+synatx:
+
+  set -x
+  <code>
+  set +x
+
+------------------------------------------------------------------------
+example:
+
+sh if.sh
+ The program to check two number are equal or not
+ enter the 1st num 
+10
+ enter the 2nd num 
+20
+if.sh: 14: [: 10: unexpected operator
+
+--------------------------------------------------------------------------------------
+@visuwesh ➜ /workspaces/codespaces-blank/shell_script $ bash -x if.sh
++ echo ' The program to check two number are equal or not'
+ The program to check two number are equal or not
++ echo ' enter the 1st num '
+ enter the 1st num 
++ read num1
+10
++ echo ' enter the 2nd num '
+ enter the 2nd num 
++ read num2
+20
++ '[' 10 -eqa 20 ']'
+if.sh: line 14: [: -eqa: binary operator expected
+
+-----------------------------------------------------------------------------------------
+
+Realtime questions or scenearios:
+
+1. storage is occupied 70 % it attain thershold value , need to check
+2. I want to kill the process 
+
+a java
+b tomcat
+c maven
+
+-----------------------------------
+i want kill java process 
+
+sh kill.sh java 
+
+ps -aef | grep $1
+
+name of application  pid 
+
+PID = awk NR==1 $2
+
+kill -9 $PID
+
+---------------------------------------------------------------------
+3. RAM 20 % left need to alert , occupied 80 %
+
+4. we need delete log files which is occupied more than 7 days
+
+find command -m 
+
+5 . Installing application
+
+ex maven 
+
+7 commands 
+
+apt-get update
+apt -get upgrade
+maven version
+java version
+we need to java
+we need verify java version
+we need to install maven
+we need to check maven version
+
+6. database clean up 
+7. More than 6 months files need to delete to make free space
+
+----------------------------------
+API  - let say In github we have repo , we need to create repo via shell script using API
+
+------------------------------------------------------------------------------------------------------
+#!/bin/bash
+
+# Define the log folder path
+LOG_FOLDER="/path/to/log/folder"
+
+# Find and delete files older than 7 days
+find "$LOG_FOLDER" -type f -mtime +7 -exec rm -f {} \;
+
+# Optionally, clean empty directories
+find "$LOG_FOLDER" -type d -empty -delete
+
+
+cleanup the log folder on regular interval ,more than one week
+
+------------------------------------
+#!/bin/bash
+
+# Define the threshold for disk usage
+THRESHOLD=80
+
+# Define the log file for alerts
+LOG_FILE="disk_alerts.log"
+
+# Infinite loop for monitoring
+while true; do
+    # Get the disk usage percentage for the root filesystem
+    DISK_USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
+
+    # Check if the usage exceeds the threshold
+    if [ "$DISK_USAGE" -gt "$THRESHOLD" ]; then
+        TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+        ALERT="[$TIMESTAMP] ALERT: Disk usage is at ${DISK_USAGE}% on root filesystem."
+
+        # Log the alert
+        echo "$ALERT" >> "$LOG_FILE"
+
+        # Optionally, send an alert via email (configure mail settings)
+        # echo "$ALERT" | mail -s "Disk Space Alert" admin@example.com
+    fi
+
+    # Wait for 1 minute before checking again
+    sleep 60
+done
+
+--------------------------------------------------------------------------
+#!/bin/bash
+
+# Define the threshold for available RAM percentage
+THRESHOLD=20
+
+# Define the log file for alerts
+LOG_FILE="ram_alerts.log"
+
+while true; do
+    # Get total and available memory in percentage
+    TOTAL_MEM=$(free | awk '/Mem:/ {print $2}')
+    AVAILABLE_MEM=$(free | awk '/Mem:/ {print $7}')
+    AVAILABLE_PERCENT=$((AVAILABLE_MEM * 100 / TOTAL_MEM))
+
+    # Check if available memory is less than the threshold
+    if [ "$AVAILABLE_PERCENT" -lt "$THRESHOLD" ]; then
+        TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+        ALERT="[$TIMESTAMP] ALERT: Available RAM is at ${AVAILABLE_PERCENT}%."
+
+        # Log the alert
+        echo "$ALERT" >> "$LOG_FILE"
+
+        # Optionally, send an alert via email (configure mail settings)
+        # echo "$ALERT" | mail -s "RAM Usage Alert" admin@example.com
+    fi
+
+    # Wait for 30 seconds before checking again
+    sleep 30
+done
+-----------------------------------------------------
+root users
+#!/bin/bash
+
+# Define the log file to store the results
+LOG_FILE="root_users.log"
+
+# Header for the log file
+echo "Users with root privileges (sudo or root group):" > "$LOG_FILE"
+echo "---------------------------------------------" >> "$LOG_FILE"
+
+# Get all users with UID 0 (root users)
+echo "Users with UID 0 (root users):" >> "$LOG_FILE"
+awk -F: '($3 == 0) {print $1}' /etc/passwd >> "$LOG_FILE"
+echo "" >> "$LOG_FILE"
+
+# Get all users in the 'sudo' or 'wheel' group
+echo "Users in the sudo group:" >> "$LOG_FILE"
+getent group sudo | awk -F: '{print $4}' | tr ',' '\n' >> "$LOG_FILE"
+
+echo "" >> "$LOG_FILE"
+
+echo "Users in the wheel group:" >> "$LOG_FILE"
+getent group wheel | awk -F: '{print $4}' | tr ',' '\n' >> "$LOG_FILE"
+
+# Display the results
+cat "$LOG_FILE"
+
+------------------------------------------------------
+shell script:
+
+1  prepare basic scripts 
+2. able to write logic  of the sceanrio
+3. special varaibles $@
+4. function
+5. cronjob 
+6  synatax
+7  where we will use any scripts case / functions
+8  synatax shell sript
+   shebang line
+   author ...
+9  debug
+10 scp - connection between two server (via SSH)
+

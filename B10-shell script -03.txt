@@ -1,0 +1,329 @@
+1. WAP to check the free memory percentage and the alert message when the % is greater than thersold
+
+free -m
+
+              total        used        free      shared  buff/cache   available
+Mem:           7929        1277         202          62        6449        6275
+Swap:             0           0           0
+
+
+total -used = free   ( awk command )
+convert this percentage
+
+if the free space is less than 30
+
+make alert message
+
+
+2. WAP to perform the below operation using case statement
+
+take opr 1 2 3 4
+
+free -m
+
+df -h
+
+du -h
+
+uname -a
+
+*) man -help
+
+
+--------------------------------------------------------------------
+
+
+
+
+
+Today we will discuss Conditional statements.
+
+1. if statement 
+2. if else statement
+3. if else ladder statement
+4. switch case statement.
+
+1. if statement
+
+what is if statement : if the condition is true , then the first block of code will be executed.
+
+syntax:
+
+if [ expression ]
+
+then 
+   //1st block of code
+
+fi
+
+example:
+
+if [ $num -gt 50 ]
+then
+ echo "the number is greater than 50"
+fi
+
+------------------------------------------------------------------------
+
+Program:
+
+#!/bin/bash
+  
+echo " The program to check two number are equal or not"
+
+echo " enter the 1st num "
+
+read num1
+
+echo " enter the 2nd num "
+
+read num2
+
+
+if [ $num1 -eq $num2 ]  #checking two num were equal 
+then
+  echo " the 2 numberes $num1 and $num2 are equal"
+
+fi
+
+----------
+output:
+
+The program to check two number are equal or not
+ enter the 1st num 
+25
+ enter the 2nd num 
+25
+ the 2 numberes 25 and 25 are equal
+
+------------------------------------------------------------------------------------------------------
+if else statement : 
+
+if the condtion is true then 1st block of code will going to execute or else the 2nd block of code is going to execute.
+
+syntax:
+
+if [ expression ]
+
+then 
+  //1st block of statement
+
+else 
+  // 2nd block of code 
+
+fi
+
+-------------------------------------------------------------------------------
+
+Program:
+
+#!/bin/bash
+  
+echo "To check wheather students clear the exam based on the percentage"
+
+echo "Enter the student percentage"
+
+read input
+
+
+if [ $input -ge 35 ] #check the input is greater thanor equal to 35
+
+then
+
+echo "student got pass with $input percentage"
+
+else
+
+echo "student got fail"
+
+fi
+
+-------------------------------------------------------------------------------
+output:
+
+To check wheather students clear the exam based on the percentage
+Enter the student percentage
+20
+student got fail
+
+---------------------------------------------------------------------------------------------------------------------
+if else ladder :
+
+Its an sequence of if statement followed by one else statement
+
+
+syntax:
+
+if [ expression ]
+
+then 
+
+ // 1st block of code
+
+elif [ expression ]
+
+then
+ 
+ //2nd block 
+
+.
+
+.
+
+.
+
+.
+
+
+else 
+
+// last block of code
+
+
+fi
+
+----------------------------------------------------------------------------
+example 
+
+|| - logical OR  operator
+
+&& - logical AND operator
+
+
+-----------------------------------------------------------------
+
+ex:
+
+//percentage
+
+
+>75 <100 - toppers
+>60 <75  - 1st class
+>40 <60 -  2nd class
+>35 <40 -  just pass
+<35     -  fail
+
+program:
+
+#!/bin/bash
+  
+echo "check the student pass/fail"
+echo "enter the stduent percentage"
+read input
+
+
+if [ $input -ge 75 ] && [ $input -le 100 ]
+then
+   echo " these students are topper"
+elif [ $input -ge 60 ] && [ $input -lt 75 ]
+then
+   echo "these students are first class"
+
+elif [ $input -ge 40 ] && [ $input -lt 60 ]
+
+then
+   echo "these students are second class"
+elif [ $input -ge 35 ] && [ $input -lt 40 ]
+then
+echo "students just pass"       
+else
+  echo "stduents are fail"
+
+fi
+
+-------------------------------------------
+output:
+
+check the student pass/fail
+enter the stduent percentage
+75
+ these students are topper
+
+-----------------------------------------------------------------------------------
+
+switch case statement:  switch the condition based on enduser request
+
+for example:
+
++ , - , * , /
+
+syntax:
+
+case '<expression>' in
+
+
+"<pattern>") //statement ;;
+"<pattern>") //statement ;;
+"<pattern>") //statement ;;
+
+.
+.
+.
+
+*) //statement ;;
+
+esac
+-----------------------------------------------------------------------------------------
+program:
+
+echo "perform arithmetic operations for 2 inputs"
+  
+echo "enter num1"
+
+read num1
+
+echo "enter num2"
+
+read num2
+
+echo "enter the arithmetic any operator + ,-,*,/"
+
+read opr
+
+
+case "$opr" in
+
+"+") result=$(( $num1 + $num2 ))
+        echo "The addition of 2 numbers is $result" ;;
+
+"-") result=$(( $num1 - $num2 ))
+        echo "the difference of 2nums is $result" ;;
+"*") result=$(( $num1 * $num2 ))
+        echo "the multiplication of two num is $result" ;;
+"/") result=$(( $num1 / $num2 ))
+        echo "the division of two num is $result" ;;
+*) echo "Its not valid operator $opr " ;;
+
+esac
+
+output:
+
+
+perform arithmetic operations for 2 inputs
+enter num1
+39
+enter num2
+90
+enter the arithmetic any operator + ,-,*,/
+@
+Its not valid operator @ 
+@visuwesh ➜ /workspaces/codespaces-blank/shell_script $ sh case.sh
+perform arithmetic operations for 2 inputs
+enter num1
+90
+enter num2
+75
+enter the arithmetic any operator + ,-,*,/
+*
+the multiplication of two num is 6750
+@visuwesh ➜ /workspaces/codespaces-blank/shell_script $ sh case.sh
+perform arithmetic operations for 2 inputs
+enter num1
+39
+enter num2
+40
+enter the arithmetic any operator + ,-,*,/
+%
+Its not valid operator % 
+
+----------------------------------------------------------------------------------------------------------

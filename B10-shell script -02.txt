@@ -1,0 +1,245 @@
+we will discuss operators
+ - special variables
+ - sample operator programs
+ - How many type of inputs we can provide
+
+
+two task:
+
+1. do all arthimetic operator in one single program
+2. explore special variables
+
+1. $* - 
+2. $$
+3. $!
+
+-------------
+1. $0 - it will return the filename of the shell script
+2. $# - it reprsent the total number if parmeters which are passed as a parameter
+3. $@ - it represent the position of the paramater passed to the script as seperate words
+4. $? - exit status of previous command
+
+3. create a file or directory 
+
+check that is it file or directory (file opeartor)
+
+-----------------------------------------------------------------------------------------------------------------
+opeators in shell script
+
+1. Arithmetic opeartors
+2. Relational operator
+3. Logical operator
+4. string operator
+5. File operator
+
+1. Arithmetic operators
+
+1. + - addition
+   - - differnce
+   * - multiplication
+   / - division
+
+
+In addition operator
+#!/bin/bash
+#Author - visu
+
+echo "Addition of two numbers"
+echo "Enter the first number"
+read a
+echo "Enter the second number"
+read b
+
+sum=$(( $a + $b )) #syntax of the program
+
+echo "The sum of two num $sum"
+
+output
+Enter the first number
+20
+Enter the second number
+30
+The sum of two num 50
+
+--------------------------------------------------------------------------------------------
+usecase:
+
+1. memory outage issue - if memory exceed 80 % 
+2. number of file should create , every 3 file should log file 
+3. disk usage - 100 gb , it should alert to clean up
+4 . you have storage account or db , you should clean up when it attains 75 % (automatic clean up)
+
+------------------------------------------------------------------------------------------------
+we can provide input in CLI two way 
+
+1. read command - we can provide a input in CLI (while executing the program)
+2. As a paramater - before executing the script we need to provide the value 
+
+syntax:
+
+sh <file_name.sh> 10 20 30 
+
+$0 - filename
+$1 - first parameter - 10 
+$2 - second parameter - 20 
+$3 - third parameter - 30
+
+program:
+
+#!/bin/bash
+  
+echo "Difference of two num"
+
+sum=$(( $1 - $2 ))  #inputs $1 $2 as parameters
+
+echo "Difference of two num $sum"
+
+echo $3 # 3rd parameter
+
+echo "the name of the file is $0" # $0 name of the file 
+
+
+output:
+
+sh parm.sh 20 35 shellscript
+
+Difference of two num
+Difference of two num -15
+shellscript
+the name of the file is parm.sh
+
+----------------------------------------------------------------------------------------------------------
+Special Variables : (VERY IMP)
+
+1. $0 - it will return the filename of the shell script
+2. $# - it reprsent the total number if parmeters which are passed as a parameter
+3. $@ - it represent the position of the paramater passed to the script as seperate words
+4. $? - exit status of previous command
+
+exit status - 0 the previous execution is clear/correct (no error)
+127 - execution is not done in proper way ( we need to troubleshoot)
+
+program
+
+#!/bin/bash
+  
+echo "Difference of two num"
+
+sum=$(( $1 - $2 ))  #inputs $1 $2 as parameters
+
+echo "Difference of two num $sum"
+
+echo $3 # 3rd parameter
+
+echo "the name of the file is $0" # $0 name of the file
+
+echo $#
+
+echo $@
+
+echo $?
+--------------------
+
+sh parm.sh 30 30 shellscript
+
+output:
+
+Difference of two num
+Difference of two num 0
+shellscript
+the name of the file is parm.sh
+3
+30 30 shellscript
+0
+
+
+-------------------------------------------------------------------------------------------------------
+relational operators:
+
+1 - gt : greater than  ---                      : if [ 10 -gt 20 ] //false
+2. -lt : less than                              : if [ 10 -lt 20 ] // true
+3. -ge : greater than or equal to               : if [ 10 -ge 20 ] // false
+4. -le : less tha or equal to                   : if [ 10 -le 30] // true
+5. -eq : equal to                               : if [ 10 -eq 10 ] // true
+6. -ne : not equal to                           : if [ 10 -ne 20 ] //true 
+
+
+----------------------------------------------------------------------------------------------
+
+Logical opeartors:
+
+-o  OR operator
+
+logical 0R : -o 
+
+1 0 = 1          - if [ 100 -gt 20 -o 10 -lt 5 ] : true : 1
+
+0 1 = 1          - if [ 20 -gt 100 -o 5 -lt 10 ] : true : 1
+
+0 0 = 0          - if [ 20 -gt 30 -o 10 -lt 5 ] :  false : 0
+
+1 1 = 1          - if [ 20 -gt 10 -o 5 -lt 7 ]  : true : 1
+
+
+-----------------------------------------------------------
+
+Logical AND operator - a
+
+1 0 = 0    -  if [ 100 -gt 20 -o 10 -lt 5 ] : false 0
+
+0 1 = 0
+
+0 0 = 0
+
+1 1 = 1 
+
+
+---------------------------------------------------------------------------------------------------
+
+string operator :
+
+= -> to the assign the value 
+
+ex:
+a=7 - (value 7 is assigned to the varaiable a)
+
+-------------------------------------------------
+
+== -> to check the 2 values equal or not (compare the two values)
+
+ex:
+
+if [ b10 == b10 ] //true 
+
+---------------------------------
+
+!= -> not equal to 
+
+ex:
+
+if [ abc != xyz ] // true 
+
+
+-z - if the string value /size of the string is zero or not , if it is a zero , it will take as true - string is empty , if its have any value - string is not empty
+
+if [ -z $input <file name>]
+
+--------------------------------------------------------------------------
+
+file operator:
+
+- d : check the input is directory or not 
+
+
+if [ -d $input ] 
+
+
+-f - check the input is file or not
+-r - to check the input file is readable or not
+-w - check the input file is writable
+-x - to check the input is executable
+-s - to check the file is empty or not 
+
+---------------------------------------------------------------------------------------------------------------------------------------
+             
+
