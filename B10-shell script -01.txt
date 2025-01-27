@@ -14,6 +14,8 @@
  .....$dirname
  
 -----------------------------------------------------------------------
+https://devopsjune2022-my.sharepoint.com/:v:/g/personal/adikarthik_devopsjune2022_onmicrosoft_com/EZmV6wBDEpdCrlhbQ3RLD-oB_xl6WRVbjFiR4nVes9fwTw?e=9gxR3S
+..........................................................................................................
 shell script:
  - used to automate the code or commands
  - to run multiple commands or any scenearios we need to do automation
